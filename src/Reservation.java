@@ -6,7 +6,10 @@ import java.util.List;
 
 public class Reservation {
     private String name;
-    private final static List<String> totalSeats = new ArrayList<>(Arrays.asList("A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4", "C5"));
+    private final static List<String> totalSeats = new ArrayList<>(Arrays.asList(
+            "A1", "A2", "A3", "A4", "A5",
+            "B1", "B2", "B3", "B4", "B5",
+            "C1", "C2", "C3", "C4", "C5"));
     private final int maxSeatsAllowed=3;
     private final int minSeatsAllowed=1;
     private int seatsRequested;
