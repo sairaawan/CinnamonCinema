@@ -10,7 +10,7 @@ class ReservationTest {
 
     @BeforeEach
     void setUp() throws Exception {
-         reserve=new Reservation("Saira",2);
+         reserve=new Reservation("Saira");
     }
 
     @Test
@@ -29,11 +29,11 @@ class ReservationTest {
     void checkReserveSeatReturnsNewList() {
         List<String> newList=reserve.getTotalSeats();
         int newSize=newList.size();
-        assertEquals(newSize, 11);
+        assertEquals(newSize, 15);
     }
     @Test
     void checkReserveSeatAssignSeat() {
         String allocatedSeat=reserve.reserveSeat(2);
-        assertEquals(allocatedSeat, "A4");
+        assertEquals(allocatedSeat, "A2");
     }
 }
