@@ -14,9 +14,11 @@ public class Reservation {
     private final int minSeatsAllowed=1;
     private int seatsRequested;
 
-    public Reservation(String name) throws Exception {
+    public Reservation(String name, int Seats) throws Exception {
         this.name = name;
+        this.seatsRequested=Seats;
         checkSeatsAvailable();
+        checkSeatLimit(this.seatsRequested);
     }
 
     public void checkSeatsAvailable() throws Exception {
@@ -28,21 +30,23 @@ public class Reservation {
 
     public void checkSeatLimit(int seatsRequested) throws Exception {
         if (seatsRequested >= minSeatsAllowed && seatsRequested <= maxSeatsAllowed) {
-            reserveSeat(seatsRequested);
+            reserveSeat();
         } else
             throw new Exception("You can reserve only 1-3 seats");
     }
 
-    public String reserveSeat(int seatsRequested) {
-        System.out.println("Total size " + getTotalSeats().size());
+    public String reserveSeat() {
+        System.out.println("Total size " + totalSeats.size());
         String allocated = null;
         for (int i = 0; i < seatsRequested; i++) {
            allocated=totalSeats.get(i);
             int ticketNo = i + 1;
             System.out.println(this.name + " " + ticketNo + " seat number is " + allocated);
         }
-
+        getTotalSeats();
         return allocated;
+
+
     }
 
     public List<String> getTotalSeats() {
