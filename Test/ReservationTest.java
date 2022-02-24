@@ -6,19 +6,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReservationTest {
-    Reservation reserve;
-
-    @BeforeEach
-    void setUp() throws Exception {
-         reserve=new Reservation("Saira");
-    }
 
     @Test
-    void checkSeatsAvailable()  {
-
+    void checkSeatsAvailable() throws Exception {
             boolean thrown = false;
             try {
-                reserve.reserveSeat(16);
+                Reservation reserve=new Reservation("Saira",17);
+                reserve.reserveSeat();
             } catch (Exception e) {
                 thrown = true;
             }
@@ -26,14 +20,13 @@ class ReservationTest {
         }
 
     @Test
-    void checkReserveSeatReturnsNewList() {
+    void checkReserveSeatReturnsNewListAndAllocatesCorrectSeat() throws Exception {
+        Reservation reserve=new Reservation("Saira",3);
         List<String> newList=reserve.getTotalSeats();
         int newSize=newList.size();
-        assertEquals(newSize, 15);
+        String allocatedSeat=reserve.reserveSeat();
+        assertEquals(newSize, 9);
+        assertEquals(allocatedSeat, "B4");
     }
-    @Test
-    void checkReserveSeatAssignSeat() {
-        String allocatedSeat=reserve.reserveSeat(2);
-        assertEquals(allocatedSeat, "A2");
-    }
+
 }
